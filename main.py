@@ -1,4 +1,4 @@
-# import os
+import os
 # import subprocess
 # import sys
 # import io
@@ -8,9 +8,8 @@ from flask import Flask, flash, render_template, request, redirect, url_for, ses
 
 
 # Session information (Cookies)
-app = Flask(__name__)
-# app = Flask(__name__, static_url_path='/static') #Fix to allow for local file loading??
-
+# app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static') #Fix to allow for local file loading??
 
 # Homepage
 # Contain video feed and shopping list
