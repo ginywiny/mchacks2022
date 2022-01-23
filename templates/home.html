@@ -2,7 +2,7 @@
 
 
     {% block body %}
-    <h2>Welcome To AutoStore</h2>
+    <h2>Select Your Purchase</h2>
 
     <section class="container content-section">
         <!-- {% for item in cartList %}
@@ -22,13 +22,13 @@
                 <!-- <h2 class="section-header">CART</h2> -->
             <div class="cart-row" >
                 <span class="cart-item cart-header cart-column">ITEM <ul id="itemList"></ul></span>
-                <span class="cart-price cart-header cart-column">PRICE</ul></span>
+                <span class="cart-price cart-header cart-column">PRICE<ul id="itemPrice"></span>
             </div>
             <div class="cart-items">
             </div>
             <div class="cart-total">
                 <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price" id="totalCost">$0</span>
+                <span class="cart-total-price" id="totalCost"></span>
                 <button class="btn btn-primary btn-purchase" type="button">Buy</button>
                 <a class="btn btn-danger" type="button" href="/clear">Clear Cart</a>
             </div>
@@ -59,14 +59,14 @@
             li.innerText = name;
             listName.append(li);
 
-            li2.innerText = price;
-            listPrice.append(li2)
+            li2.innerText = "$" + price;
+            listPrice.append(li2);
             sum += price;
         }
 
         var spanTotal = document.createElement("span");
         var spanId = document.getElementById("totalCost");
-        spanTotal.innerText = sum;
+        spanTotal.innerText = "$" + sum;
         spanId.append(sum);
 
     </script>
