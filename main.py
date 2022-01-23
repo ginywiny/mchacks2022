@@ -161,6 +161,9 @@ def take_picture(show_pics=True):
             cv2.imshow("cropped", cropped_image)
             key = cv2.waitKey(1)
             if key == 27:
+                cv2.destroyWindow("after")
+                cv2.destroyWindow("diff")
+                cv2.destroyWindow("cropped")
                 break
 
     return cropped_image
