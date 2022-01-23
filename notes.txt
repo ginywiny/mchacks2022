@@ -1,0 +1,16 @@
+Object prediction works:
+    
+1. Unsupervised removed-object detection:
+    I use an image difference to determine which object was removed from the cart and put into a shopping bag. I threshold the image difference, close the contours using a homogrophy algorithm from OpenCV then I determine the largest connected component.
+    The largest connected component is my removed object.
+    I extract the corners of the connected component to determine the bounding box to be used to crop my image frame.
+    The cropped image will contain the removed object which is fed to my model to be classified
+    
+    The advantage of this approach is that if there are items that aren't part of my training set (which will absolutely happen in the real world), the removed object will still be detected and its cropped image can be used to further train my model.
+    
+        THIS IS WHY I DIDN'T USE AN OBJECT DETECTOR. That way I can handle unseen or new objects. Or even gather data about existing objects but at new angles or different lighting.
+    
+2. Image classification
+    I used a pre-trained ResNet and fine-tuned it to manually annotated images of the objects in my shopping cart.
+    
+3.
