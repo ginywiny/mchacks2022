@@ -19,10 +19,10 @@
                 <!-- UNCOMMENT FOR VIDEO FEED -->
                 <img src="{{ url_for('video_feed') }}" width="100%">
             </div>
-                <!-- <h2 class="section-header">CART</h2> -->
+                <h2 class="section-header" style="text-align:center;">CART</h2>
             <div class="cart-row" >
-                <span class="cart-item cart-header cart-column">ITEM <ul id="itemList"></ul></span>
-                <span class="cart-price cart-header cart-column">PRICE<ul id="itemPrice"></span>
+                <span class="cart-item cart-header cart-column"><ul id="itemList"></ul></span>
+                <span class="cart-price cart-header cart-column"><ul id="itemPrice"></span>
             </div>
             <div class="cart-items">
             </div>
@@ -67,7 +67,7 @@
         var spanTotal = document.createElement("span");
         var spanId = document.getElementById("totalCost");
         spanTotal.innerText = "$" + sum;
-        spanId.append(sum);
+        spanId.append(spanTotal);
 
     </script>
     {% endblock %}

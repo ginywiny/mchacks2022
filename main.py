@@ -60,9 +60,7 @@ def gen_camera():
 
 
 # Video stream 
-# @app.route('/video_feed', methods=['POST'])
 @app.route('/video_feed')
-# @app.route('/video_feed')
 def video_feed():
         return Response(gen_camera(),
             mimetype='multipart/x-mixed-replace; boundary=frame')
