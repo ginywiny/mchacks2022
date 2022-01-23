@@ -2,6 +2,16 @@
 
 
     {% block body %}
+    <style>
+        body {
+            background-image: url('../static/will_rotate2.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
+
     <h2>Select Your Purchase</h2>
     <form action="/image_capture" method="post">
         <p><input type="submit" name="submitBox" value="Select Item"/></p>
