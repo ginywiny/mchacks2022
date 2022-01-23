@@ -17,6 +17,9 @@ cartList = []
 cartMap = {}
 cart2List = [[]]
 
+items_counter = 0
+items = ["book", "deodorant", "protein_powder"]
+
 # Homepage
 # Contain video feed and shopping list
 @app.route('/')
@@ -93,6 +96,13 @@ def clear():
     cartList.clear()
     cart2List.clear()
     return redirect(url_for("home"))
+
+
+def demo():
+    global items_counter
+    item = items[items_counter%len(items)]
+    items_counter += 1
+    return item
 
 
 if __name__ == "__main__":
