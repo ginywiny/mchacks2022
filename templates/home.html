@@ -2,9 +2,72 @@
 
 
     {% block body %}
-    <div class="container">
-        <h2>Welcome To AutoStore</h2>
-        <!-- UNCOMMENT BELOW LINE FOR VIDEO FEED AND SET DEBUG FALSE -->
-        <!-- <img src="{{ url_for('video_feed') }}" width="50%"> -->
-    </div>
+    <h2>Welcome To AutoStore</h2>
+
+    <section class="container content-section">
+        <!-- {% for item in cartList %}
+        <li class="collection-item">{{ item }}</li>
+        {% endfor %} -->
+
+        <div class="row">
+            <!-- <button class="btn btn-primary btn-purchase" type="button">Select Item</button> -->
+            <form action="/image_capture" method="post">
+                <p><input type="submit" name="submitBox" value="Select Item"/></p>
+            </form>
+            <div class="col align-self-start">
+                <!-- <img src="../static/icons/logo_transparent.png" width="50%"> -->
+                <!-- UNCOMMENT FOR VIDEO FEED -->
+                <img src="{{ url_for('video_feed') }}" width="100%">
+            </div>
+                <!-- <h2 class="section-header">CART</h2> -->
+            <div class="cart-row" >
+                <span class="cart-item cart-header cart-column">ITEM <ul id="itemList"></ul></span>
+                <span class="cart-price cart-header cart-column">PRICE</ul></span>
+            </div>
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price" id="totalCost">$0</span>
+                <button class="btn btn-primary btn-purchase" type="button">Buy</button>
+                <a class="btn btn-danger" type="button" href="/clear">Clear Cart</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script type="text/javascript">
+        // Get acquired items from flask
+        var productsInCart = [[]];
+        productsInCart = {{cartList|safe}};
+        console.log("All elements: " + productsInCart);
+
+        // Calculate total cost
+        var sum = 0;
+
+        // Add each item element to HTML list
+        var listName = document.getElementById("itemList");
+        var listPrice = document.getElementById("itemPrice");
+
+        for (var i= 0; i < productsInCart.length; i++) {
+            let li = document.createElement("li");
+            let li2 = document.createElement("li");
+
+            var name = productsInCart[i][0];
+            var price = productsInCart[i][1];
+            li.innerText = name;
+            listName.append(li);
+
+            li2.innerText = price;
+            listPrice.append(li2)
+            sum += price;
+        }
+
+        var spanTotal = document.createElement("span");
+        var spanId = document.getElementById("totalCost");
+        spanTotal.innerText = sum;
+        spanId.append(sum);
+
+    </script>
     {% endblock %}
