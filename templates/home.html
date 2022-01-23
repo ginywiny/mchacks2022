@@ -3,6 +3,9 @@
 
     {% block body %}
     <h2>Select Your Purchase</h2>
+    <form action="/image_capture" method="post">
+        <p><input type="submit" name="submitBox" value="Select Item"/></p>
+    </form>
 
     <section class="container content-section">
         <!-- {% for item in cartList %}
@@ -11,9 +14,7 @@
 
         <div class="row">
             <!-- <button class="btn btn-primary btn-purchase" type="button">Select Item</button> -->
-            <form action="/image_capture" method="post">
-                <p><input type="submit" name="submitBox" value="Select Item"/></p>
-            </form>
+            
             <div class="col align-self-start">
                 <!-- <img src="../static/icons/logo_transparent.png" width="50%"> -->
                 <!-- UNCOMMENT FOR VIDEO FEED -->
@@ -29,7 +30,7 @@
             <div class="cart-total">
                 <strong class="cart-total-title">Total</strong>
                 <span class="cart-total-price" id="totalCost"></span>
-                <button class="btn btn-primary btn-purchase" type="button">Buy</button>
+                <a class="btn btn-primary btn-purchase" type="button" href="/wow">Buy</a>
                 <a class="btn btn-danger" type="button" href="/clear">Clear Cart</a>
             </div>
         </div>

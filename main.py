@@ -1,4 +1,5 @@
 import os
+import random
 # import subprocess
 # import sys
 # import io
@@ -37,7 +38,8 @@ def addItem(cartItem):
         cartMap[cartItem] = 1
         print(cartMap)
 
-        cart2List.append([cartItem, 1])
+        randCost = random.randint(1, 20)
+        cart2List.append([cartItem, randCost])
         print(cart2List)
 
     return render_template("home.html", cartList=json.dumps(cart2List))
@@ -77,8 +79,9 @@ def image_capture():
         print("Frame submitted! " + submitPic)
 
         if submitPic is not None:
-            # submitPic = None
-            return redirect(url_for("addItem", cartItem=submitPic))
+            item = demo()
+            # return redirect(url_for("addItem", cartItem=submitPic))
+            return redirect(url_for("addItem", cartItem=item))
         else:
             return redirect(url_for("home"))
     else:
@@ -96,6 +99,11 @@ def clear():
     cartList.clear()
     cart2List.clear()
     return redirect(url_for("home"))
+
+# Clear list 
+@app.route("/wow")
+def wow():
+    return render_template("wow.html")
 
 
 def demo():
