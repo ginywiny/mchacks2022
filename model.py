@@ -11,9 +11,8 @@ from torchvision.models import resnet18
 from torchvision import datasets, transforms as T
 from torchvision.datasets.folder import make_dataset
 from torchvision.datasets import ImageFolder
-import time
-import copy
 from PIL import Image
+import os
 
 def load_model():
 
@@ -33,7 +32,6 @@ def train_model(model, dataloader):
 
     model.train()
 
-    #train the neural network for 5 epochs
     for epoch in range(5):
 
         for img, label in dataloader:
@@ -58,6 +56,7 @@ def train_model(model, dataloader):
             #update the parameters
             optimizer.step()
     
+    print("training done")
     model.eval()
     return model
 
@@ -76,7 +75,6 @@ def main():
         loader=Image.open
     )
     
-    
     dataloader = DataLoader(dataset, batch_size=1, shuffle=True)
 
     model = load_model()
@@ -86,6 +84,13 @@ def main():
     model.fc = torch.nn.Linear(num_in_features, len(dataset.classes))
 
     train_model(model, dataloader)
+    models_dir = os.path.join(os.path.dirname(__file__), 'models')
+    if not os.path.isdir(models_dir):
+        os.mkdir(models_dir)
+    
+    model = model.cpu()
+    torch.save(model.state_dict(), os.path.join(models_dir, "model.pth"))
+    print("model saved")
 
 
 if __name__ == "__main__":
