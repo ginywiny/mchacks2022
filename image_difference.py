@@ -26,11 +26,11 @@ def calculate_image_difference(before_image, after_image):
     image_diff_threshold = cv2.threshold(image_diff, 20, 255, cv2.THRESH_BINARY)[1]
 
     image_closed = cv2.morphologyEx(image_diff_threshold, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8), iterations=2)
-    # image_eroded_diff = cv2.erode(image_closed, np.ones((5,5), np.uint8), iterations=2)
+    image_eroded_diff = cv2.erode(image_closed, np.ones((5,5), np.uint8), iterations=2)
 
     # return image_diff_threshold
-    return image_closed
-    # return image_eroded_diff
+    # return image_closed
+    return image_eroded_diff
 
 def get_image_contours(image):
     contours = cv2.findContours(image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -90,7 +90,7 @@ def predict_removed_object(before_image, after_image):
     return BoundingBox(x, y, x+w, y+h)
 
 def crop_bbox_from_image(bbox, image):
-    return image[bbox.top_left_x: bbox.bottom_right_x, bbox.top_left_y: bbox.bottom_right_y]
+    return image[bbox.top_left_y: bbox.bottom_right_y, bbox.top_left_x: bbox.bottom_right_x, ]
 
 
 def getLargestCC(segmentation):
